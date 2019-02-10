@@ -1,20 +1,25 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.reg
 hbs.registerPartials(__dirname +'/views/partials');
 app.set('view engine', 'hbs');
 
-app.use((req, resp, next) =>{
-  resp.render('maintenance.hbs', {
-    pageTitle: 'A seal has blocked you -arf! arf!- ',
-    maintenanceMessage: 'This site is under maintenance! Come back later!'
-  })
-});
+//------------------------------------------------------------------//------------------------------------------------------------------
+//Maintenance page for when site is doen
+// app.use((req, resp, next) =>{
+//   resp.render('maintenance.hbs', {
+//     pageTitle: 'A seal has blocked you -arf! arf!- ',
+//     maintenanceMessage: 'This site is under maintenance! Come back later!'
+//   })
+// });
+//------------------------------------------------------------------//------------------------------------------------------------------
 // the following line must be after the
-//maintenance page else you can still access it
+//   maintenance page else you can still access it
 app.use(express.static(__dirname + `/public`));
 
 app.use((req, resp, next) =>{
@@ -68,6 +73,6 @@ app.get('/bad', (request, response) => {
   });
 })
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
