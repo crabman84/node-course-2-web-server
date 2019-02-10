@@ -5,7 +5,6 @@ const fs = require('fs');
 const port = process.env.PORT || 3000;
 var app = express();
 
-hbs.reg
 hbs.registerPartials(__dirname +'/views/partials');
 app.set('view engine', 'hbs');
 
@@ -58,6 +57,13 @@ app.get('/', (request, response) => {
       `Biking`,
       `Cities`
     ]
+  })
+});
+
+app.get('/projects', (request, response) => {
+  response.render('projects.hbs', {
+    pageTitle: 'Projects Page',
+    projectMessage: 'Hello Hackeroonie!'
   })
 });
 
